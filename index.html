@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>REDitors Voice-to-Text PRO v3.0 ULTIMATE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Primary Colors */
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            
+            /* Accent Colors */
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-orange: #f97316;
+            
+            /* Status Colors */
+            --success: #10b981;
+            --success-light: #34d399;
+            --warning: #f59e0b;
+            --warning-light: #fbbf24;
+            --error: #ef4444;
+            --error-light: #f87171;
+            --info: #3b82f6;
+            --info-light: #60a5fa;
+            
+            /* Background Colors */
+            --bg-primary: #0a0f1e;
+            --bg-secondary: #1a1f2e;
+            --bg-tertiary: #2a2f3e;
+            --bg-hover: #3a3f4e;
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            
+            /* Text Colors */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --text-muted: #475569;
+            
+            /* Border & Divider */
+            --border: #334155;
+            --border-light: #475569;
+            --divider: rgba(148, 163, 184, 0.1);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 20px var(--primary-glow);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #0f1419 50%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            padding: 16px;
+            overflow-x: hidden;
+            font-size: 13px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animated Background Particles */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px);
+            }
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header with Advanced Animations */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 24px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent-purple) 100%);
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            background: linear-gradient(to right, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.95;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .version-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255,255,255,0.25);
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 10px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Panel Sections */
+        .panel-section {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-purple), var(--accent-pink));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .panel-section:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-xl), 0 0 30px rgba(99, 102, 241, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .panel-section:hover::before {
+            opacity: 1;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, var(--primary), var(--accent-purple)) 1;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            border-radius: 6px;
+            font-size: 13px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-badge {
+            background: var(--accent-orange);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Enhanced Buttons */
+        .button {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+        }
+
+        .button:active {
+            transform: translateY(-1px);
+        }
+
+        .button:disabled {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-hover));
+            color: var(--text-tertiary);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .button-secondary {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+        }
+
+        .button-secondary:hover {
+            box-shadow: var(--shadow-xl), 0 0 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .button-danger {
+            background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
+        }
+
+        .button-danger:hover {
+            box-shadow: var(--shadow-xl), 0 0 30px rgba(239, 68, 68, 0.4);
+        }
+
+        .button-warning {
+            background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%);
+        }
+
+        .button-info {
+            background: linear-gradient(135deg, var(--info) 0%, #2563eb 100%);
+        }
+
+        .button-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .button-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .button-group .button {
+            margin: 0;
+        }
+
+        /* Icon Buttons */
+        .icon-button {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 0;
+        }
+
+        /* Status Display */
+        .status {
+            padding: 14px 16px;
+            margin: 12px 0;
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            font-size: 12px;
+            display: none;
+            animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .status.show {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status.success {
+            border-left-color: var(--success);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+        }
+
+        .status.error {
+            border-left-color: var(--error);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+        }
+
+        .status.processing {
+            border-left-color: var(--info);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+        }
+
+        .status.warning {
+            border-left-color: var(--warning);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+        }
+
+        .status-icon {
+            font-size: 16px;
+            animation: rotateIcon 1s infinite linear;
+        }
+
+        .status.success .status-icon,
+        .status.error .status-icon {
+            animation: none;
+        }
+
+        @keyframes rotateIcon {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 16px 0;
+            display: none;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .progress-label {
+            color: var(--text-secondary);
+        }
+
+        .progress-percent {
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset var(--shadow-sm);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent-purple), var(--primary));
+            background-size: 200% 100%;
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: progressShimmer 2s infinite;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        @keyframes progressShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            background: var(--bg-tertiary);
+            padding: 4px;
+            border-radius: 10px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Select Inputs */
+        select, input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 12px 14px;
+            margin: 8px 0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-family: inherit;
+            transition: all 0.3s;
+            box-shadow: inset var(--shadow-sm);
+        }
+
+        select:hover, input:hover, textarea:hover {
+            border-color: var(--primary-light);
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow), inset var(--shadow-sm);
+        }
+
+        select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+            appearance: none;
+        }
+
+        /* Checkbox & Radio */
+        .checkbox-group, .radio-group {
+            margin: 12px 0;
+        }
+
+        .checkbox-label, .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            margin: 6px 0;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .checkbox-label:hover, .radio-label:hover {
+            background: var(--bg-hover);
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-hover));
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+            margin: 10px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--divider);
+            font-size: 12px;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-row strong {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .info-row span:last-child {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Statistics Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-hover));
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Quick Actions */
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-action:hover {
+            background: var(--bg-hover);
+            border-color: var(--primary-light);
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .quick-action-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            border-radius: 10px;
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-action-content {
+            flex: 1;
+        }
+
+        .quick-action-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .quick-action-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        /* Activity Log */
+        .log {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            box-shadow: inset var(--shadow-sm);
+        }
+
+        .log-entry {
+            padding: 6px 8px;
+            margin: 4px 0;
+            font-size: 11px;
+            border-radius: 4px;
+            border-left: 2px solid transparent;
+            animation: logSlide 0.3s;
+        }
+
+        @keyframes logSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .log-entry.info {
+            border-left-color: var(--info);
+            color: var(--info-light);
+        }
+
+        .log-entry.success {
+            border-left-color: var(--success);
+            color: var(--success-light);
+        }
+
+        .log-entry.error {
+            border-left-color: var(--error);
+            color: var(--error-light);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .log-entry.warning {
+            border-left-color: var(--warning);
+            color: var(--warning-light);
+        }
+
+        /* Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+
+        /* Range Slider */
+        input[type="range"] {
+            width: 100%;
+            margin: 12px 0;
+            height: 6px;
+            border-radius: 10px;
+            background: var(--bg-tertiary);
+            outline: none;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow-md);
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: var(--text-tertiary);
+            margin-top: -8px;
+        }
+
+        /* Settings Row */
+        .settings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .settings-row:last-child {
+            border-bottom: none;
+        }
+
+        .settings-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .settings-desc {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+
+        .settings-value {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .badge-warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .badge-error {
+            background: var(--error);
+            color: white;
+        }
+
+        /* Alert */
+        .alert {
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+            font-size: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: var(--info);
+            color: var(--info-light);
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: var(--success);
+            color: var(--success-light);
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--warning);
+            color: var(--warning-light);
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: var(--error);
+            color: var(--error-light);
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 4px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow-xl);
+            min-width: 200px;
+            z-index: 1000;
+            animation: dropdownSlide 0.2s;
+        }
+
+        @keyframes dropdownSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 14px;
+            font-size: 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dropdown-item:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg-hover);
+            color: var(--primary-light);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: var(--divider);
+            margin: 4px 0;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideUp 0.3s;
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--error);
+            color: white;
+        }
+
+        .modal-body {
+            margin-bottom: 16px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            text-align: center;
+            border-radius: 6px;
+            padding: 6px 10px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 11px;
+            white-space: nowrap;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            margin: 10px 0;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .card-header {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .card-body {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--divider), transparent);
+            margin: 20px 0;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--bg-tertiary);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Collapsible */
+        .collapsible-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .collapsible-header:hover {
+            background: var(--bg-hover);
+            border-color: var(--primary-light);
+        }
+
+        .collapsible-header.active {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-color: transparent;
+        }
+
+        .collapsible-icon {
+            transition: transform 0.3s;
+        }
+
+        .collapsible-header.active .collapsible-icon {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .collapsible-content.show {
+            max-height: 1000px;
+            padding: 14px;
+        }
+
+        /* File Upload Zone */
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--bg-tertiary);
+        }
+
+        .upload-zone:hover {
+            border-color: var(--primary);
+            background: var(--bg-hover);
+        }
+
+        .upload-zone.dragging {
+            border-color: var(--primary-light);
+            background: var(--primary-glow);
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        .upload-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .upload-hint {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 6px;
+        }
+
+        /* Template Cards */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .template-card {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-hover));
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .template-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .template-card.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .template-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .template-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .template-desc {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+        }
+
+        /* Batch Processing List */
+        .batch-list {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 250px;
+            overflow-y: auto;
+            margin: 12px 0;
+        }
+
+        .batch-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            margin: 6px 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .batch-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .batch-item-info {
+            flex: 1;
+        }
+
+        .batch-item-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .batch-item-status {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+
+        .batch-item-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        /* Color Picker */
+        input[type="color"] {
+            width: 50px;
+            height: 36px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 4px;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 4px;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 2px;
+            background: white;
+            transition: 0.3s;
+            border-radius: 50%;
+            box-shadow: var(--shadow-sm);
+        }
+
+        input:checked + .toggle-slider {
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            border-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Particles -->
+    <div class="bg-particles" id="bgParticles"></div>
+
+    <div class="content-wrapper">
+        <!-- Header -->
+        <div class="header">
+            <div class="version-badge">v3.0 ULTIMATE</div>
+            <div class="header-content">
+                <h1>🎬 REDitors Voice-to-Text PRO</h1>
+                <div class="subtitle">AI-Powered Professional Transcription & Advanced Captioning Suite</div>
+            </div>
+        </div>
+
+        <!-- Quick Stats Dashboard -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">📊</div>
+                    Dashboard
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalProcessed">0</div>
+                    <div class="stat-label">Clips Processed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalWords">0</div>
+                    <div class="stat-label">Total Words</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalDuration">0m</div>
+                    <div class="stat-label">Total Duration</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clip Selection Section -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">🎞️</div>
+                    Clip Selection
+                </div>
+                <span class="badge badge-primary" id="clipBadge">No Clip</span>
+            </div>
+            
+            <div class="button-group">
+                <button class="button" onclick="selectClip()">
+                    <span>📌 Select Clip</span>
+                </button>
+                <button class="button button-info" onclick="selectMultipleClips()">
+                    <span>📚 Batch Select</span>
+                </button>
+            </div>
+            
+            <div class="info-box" id="clipInfo" style="display: none;">
+                <div class="info-row">
+                    <span><strong>Sequence:</strong></span>
+                    <span id="sequenceName">-</span>
+                </div>
+                <div class="info-row">
+                    <span><strong>Clip:</strong></span>
+                    <span id="clipName">-</span>
+                </div>
+                <div class="info-row">
+                    <span><strong>Duration:</strong></span>
+                    <span id="trackInfo">-</span>
+                </div>
+                <div class="info-row">
+                    <span><strong>File Size:</strong></span>
+                    <span id="fileSize">-</span>
+                </div>
+            </div>
+
+            <!-- Batch Processing List -->
+            <div id="batchListContainer" style="display: none;">
+                <div class="divider"></div>
+                <div class="settings-label" style="margin-bottom: 8px;">Batch Queue (<span id="batchCount">0</span> clips)</div>
+                <div class="batch-list" id="batchList"></div>
+                <button class="button button-danger" onclick="clearBatchQueue()">
+                    <span>🗑️ Clear Queue</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- AI Model & Language Settings -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">🤖</div>
+                    AI Configuration
+                </div>
+                <span class="section-badge">ENHANCED</span>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('basic')">Basic</div>
+                <div class="tab" onclick="switchTab('advanced')">Advanced</div>
+                <div class="tab" onclick="switchTab('aiEnhancement')">AI Enhancement</div>
+            </div>
+
+            <!-- Basic Tab -->
+            <div class="tab-content active" id="basicTab">
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Language</label>
+                <select id="languageSelect">
+                    <option value="auto">🌐 Auto-Detect</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="es">🇪🇸 Spanish</option>
+                    <option value="fr">🇫🇷 French</option>
+                    <option value="de">🇩🇪 German</option>
+                    <option value="it">🇮🇹 Italian</option>
+                    <option value="pt">🇵🇹 Portuguese</option>
+                    <option value="ar">🇸🇦 Arabic</option>
+                    <option value="zh">🇨🇳 Chinese (Simplified)</option>
+                    <option value="zh-TW">🇹🇼 Chinese (Traditional)</option>
+                    <option value="ja">🇯🇵 Japanese</option>
+                    <option value="ko">🇰🇷 Korean</option>
+                    <option value="ru">🇷🇺 Russian</option>
+                    <option value="hi">🇮🇳 Hindi</option>
+                    <option value="tr">🇹🇷 Turkish</option>
+                    <option value="vi">🇻🇳 Vietnamese</option>
+                    <option value="th">🇹🇭 Thai</option>
+                    <option value="nl">🇳🇱 Dutch</option>
+                    <option value="pl">🇵🇱 Polish</option>
+                    <option value="sv">🇸🇪 Swedish</option>
+                </select>
+
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block; margin-top: 10px;">AI Model</label>
+                <select id="modelSelect">
+                    <option value="whisper-1">⚡ Whisper v1 (Fast & Accurate - Recommended)</option>
+                    <option value="whisper-large-v3">🎯 Whisper Large v3 (Highest Accuracy)</option>
+                    <option value="whisper-large-v2">🎯 Whisper Large v2 (Very Accurate)</option>
+                    <option value="whisper-medium">⚖️ Whisper Medium (Balanced)</option>
+                    <option value="whisper-small">🏃 Whisper Small (Fast)</option>
+                </select>
+
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block; margin-top: 10px;">Audio Quality</label>
+                <select id="audioQualitySelect">
+                    <option value="auto">🔧 Auto (Recommended)</option>
+                    <option value="studio">🎙️ Studio Quality</option>
+                    <option value="clear">✨ Clear Speech</option>
+                    <option value="noisy">📢 Noisy Environment</option>
+                    <option value="phone">📱 Phone Call</option>
+                    <option value="podcast">🎧 Podcast</option>
+                </select>
+            </div>
+
+            <!-- Advanced Tab -->
+            <div class="tab-content" id="advancedTab">
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="speakerDiarizationCheck">
+                        <span>👥 Speaker Diarization (Identify Different Speakers)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="timestampCheck" checked>
+                        <span>⏱️ Precise Timestamps (Word-Level)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="punctuationCheck" checked>
+                        <span>📝 Smart Punctuation & Capitalization</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="profanityFilterCheck">
+                        <span>🚫 Profanity Filter</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="fillerWordsCheck">
+                        <span>🗑️ Remove Filler Words (um, uh, like)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="backgroundNoiseCheck">
+                        <span>🔇 Background Noise Reduction</span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-label">Confidence Threshold</div>
+                        <div class="settings-desc">Filter low-confidence transcriptions</div>
+                    </div>
+                    <span class="settings-value" id="confidenceValue">70%</span>
+                </div>
+                <input type="range" id="confidenceSlider" min="0" max="100" value="70" oninput="updateConfidence(this.value)">
+                <div class="range-labels">
+                    <span>Low</span>
+                    <span>Medium</span>
+                    <span>High</span>
+                </div>
+
+                <div class="settings-row" style="margin-top: 14px;">
+                    <div>
+                        <div class="settings-label">Speaker Sensitivity</div>
+                        <div class="settings-desc">How sensitive to detect speaker changes</div>
+                    </div>
+                    <span class="settings-value" id="speakerSensitivityValue">Medium</span>
+                </div>
+                <input type="range" id="speakerSensitivitySlider" min="1" max="5" value="3" oninput="updateSpeakerSensitivity(this.value)">
+                <div class="range-labels">
+                    <span>Low</span>
+                    <span>Med</span>
+                    <span>High</span>
+                </div>
+            </div>
+
+            <!-- AI Enhancement Tab -->
+            <div class="tab-content" id="aiEnhancementTab">
+                <div class="alert alert-info">
+                    <span>💡</span>
+                    <span>AI Enhancement uses GPT to improve transcription quality, fix grammar, and enhance readability.</span>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="grammarCorrectionCheck">
+                        <span>✍️ Grammar Correction</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="sentenceStructureCheck">
+                        <span>📐 Improve Sentence Structure</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="contextAwareCheck">
+                        <span>🧠 Context-Aware Corrections</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="technicalTermsCheck">
+                        <span>🔬 Technical Terms Recognition</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="summaryGenerationCheck">
+                        <span>📋 Generate Summary</span>
+                    </label>
+                </div>
+
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block; margin-top: 10px;">Enhancement Level</label>
+                <select id="enhancementLevelSelect">
+                    <option value="light">🌤️ Light (Minimal Changes)</option>
+                    <option value="moderate" selected>☀️ Moderate (Balanced)</option>
+                    <option value="heavy">🌟 Heavy (Maximum Enhancement)</option>
+                </select>
+
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block; margin-top: 10px;">Content Type (for better context)</label>
+                <select id="contentTypeSelect">
+                    <option value="general">🌐 General</option>
+                    <option value="interview">🎤 Interview</option>
+                    <option value="lecture">🎓 Lecture/Educational</option>
+                    <option value="meeting">💼 Business Meeting</option>
+                    <option value="podcast">🎧 Podcast</option>
+                    <option value="documentary">🎬 Documentary</option>
+                    <option value="technical">💻 Technical/Tutorial</option>
+                    <option value="storytelling">📖 Storytelling/Narrative</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Caption Style Templates -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">🎨</div>
+                    Caption Style Templates
+                </div>
+                <span class="section-badge">NEW</span>
+            </div>
+
+            <div class="template-grid">
+                <div class="template-card" onclick="selectTemplate('standard')" id="template-standard">
+                    <div class="template-icon">📄</div>
+                    <div class="template-name">Standard</div>
+                    <div class="template-desc">Classic subtitle style</div>
+                </div>
+                <div class="template-card" onclick="selectTemplate('social')" id="template-social">
+                    <div class="template-icon">📱</div>
+                    <div class="template-name">Social Media</div>
+                    <div class="template-desc">Short, punchy captions</div>
+                </div>
+                <div class="template-card" onclick="selectTemplate('cinematic')" id="template-cinematic">
+                    <div class="template-icon">🎬</div>
+                    <div class="template-name">Cinematic</div>
+                    <div class="template-desc">Film-style subtitles</div>
+                </div>
+                <div class="template-card" onclick="selectTemplate('broadcast')" id="template-broadcast">
+                    <div class="template-icon">📺</div>
+                    <div class="template-name">Broadcast</div>
+                    <div class="template-desc">TV/news style</div>
+                </div>
+                <div class="template-card" onclick="selectTemplate('accessibility')" id="template-accessibility">
+                    <div class="template-icon">♿</div>
+                    <div class="template-name">Accessibility</div>
+                    <div class="template-desc">SDH compliant</div>
+                </div>
+                <div class="template-card" onclick="selectTemplate('custom')" id="template-custom">
+                    <div class="template-icon">⚙️</div>
+                    <div class="template-name">Custom</div>
+                    <div class="template-desc">Your own settings</div>
+                </div>
+            </div>
+
+            <!-- Custom Template Settings (shown when Custom is selected) -->
+            <div id="customTemplateSettings" style="display: none; margin-top: 16px;">
+                <div class="divider"></div>
+                
+                <div class="settings-row">
+                    <div class="settings-label">Max Characters per Line</div>
+                    <span class="settings-value" id="maxCharsValue">42</span>
+                </div>
+                <input type="range" id="maxCharsSlider" min="20" max="60" value="42" oninput="updateMaxChars(this.value)">
+
+                <div class="settings-row">
+                    <div class="settings-label">Max Lines</div>
+                    <span class="settings-value" id="maxLinesValue">2</span>
+                </div>
+                <input type="range" id="maxLinesSlider" min="1" max="3" value="2" oninput="updateMaxLines(this.value)">
+
+                <div class="settings-row">
+                    <div class="settings-label">Min Display Duration (seconds)</div>
+                    <span class="settings-value" id="minDurationValue">1.5</span>
+                </div>
+                <input type="range" id="minDurationSlider" min="0.5" max="5" step="0.5" value="1.5" oninput="updateMinDuration(this.value)">
+
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block; margin-top: 10px;">Caption Position</label>
+                <select id="captionPositionSelect">
+                    <option value="bottom">Bottom</option>
+                    <option value="top">Top</option>
+                    <option value="middle">Middle</option>
+                </select>
+
+                <div class="checkbox-group" style="margin-top: 12px;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="snapToWordsCheck" checked>
+                        <span>📍 Snap to Word Boundaries</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="avoidOverlapCheck" checked>
+                        <span>🔄 Avoid Caption Overlap</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Processing Section -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">⚡</div>
+                    Processing
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="button" id="transcribeBtn" onclick="transcribeAudio()">
+                    <span>🎙️ Transcribe</span>
+                </button>
+                <button class="button button-warning" id="transcribeBatchBtn" onclick="transcribeBatch()" style="display: none;">
+                    <span>⚡ Batch Process</span>
+                </button>
+            </div>
+
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-header">
+                    <span id="progressLabel" class="progress-label">Processing...</span>
+                    <span id="progressPercent" class="progress-percent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div style="margin-top: 8px; font-size: 11px; color: var(--text-tertiary);">
+                    <span id="progressDetails">Initializing...</span>
+                </div>
+            </div>
+
+            <div class="status" id="status">
+                <div class="status-icon">✓</div>
+                <div>Status message</div>
+            </div>
+
+            <!-- Real-time Statistics -->
+            <div class="stats-grid" id="statsGrid" style="display: none;">
+                <div class="stat-card">
+                    <div class="stat-value" id="wordCount">0</div>
+                    <div class="stat-label">Words</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="segmentCount">0</div>
+                    <div class="stat-label">Segments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="duration">0s</div>
+                    <div class="stat-label">Duration</div>
+                </div>
+            </div>
+
+            <div id="processingTime" style="display: none; margin-top: 12px; padding: 10px; background: var(--bg-tertiary); border-radius: 8px; text-align: center; font-size: 11px;">
+                <span style="color: var(--text-secondary);">Processing Time:</span>
+                <span style="color: var(--primary-light); font-weight: 700; margin-left: 6px;" id="processingTimeValue">0s</span>
+            </div>
+        </div>
+
+        <!-- Caption Creation & Export -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">💬</div>
+                    Caption Creation & Export
+                </div>
+            </div>
+
+            <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Caption Track</label>
+            <select id="trackSelect">
+                <option value="new">➕ Create New Caption Track</option>
+                <option value="1">Caption Track 1</option>
+                <option value="2">Caption Track 2</option>
+                <option value="3">Caption Track 3</option>
+                <option value="4">Caption Track 4</option>
+            </select>
+
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="autoSyncCheck" checked>
+                    <span>⏱️ Auto-sync to Clip Timecode</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="splitLongCaptionsCheck" checked>
+                    <span>✂️ Smart Caption Splitting</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="colorCodeSpeakersCheck">
+                    <span>🎨 Color-Code Different Speakers</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="addSpeakerLabelsCheck">
+                    <span>🏷️ Add Speaker Labels</span>
+                </label>
+            </div>
+
+            <button class="button button-secondary" onclick="createCaptions()">
+                <span>✨ Create Captions in Timeline</span>
+            </button>
+
+            <div class="divider"></div>
+
+            <!-- Quick Export Actions -->
+            <div class="settings-label" style="margin-bottom: 10px;">Quick Export</div>
+            
+            <div class="quick-action" onclick="exportSRT()">
+                <div class="quick-action-icon">📄</div>
+                <div class="quick-action-content">
+                    <div class="quick-action-title">Export SRT</div>
+                    <div class="quick-action-desc">Universal subtitle format</div>
+                </div>
+            </div>
+            
+            <div class="quick-action" onclick="exportVTT()">
+                <div class="quick-action-icon">🌐</div>
+                <div class="quick-action-content">
+                    <div class="quick-action-title">Export WebVTT</div>
+                    <div class="quick-action-desc">Web video captions</div>
+                </div>
+            </div>
+            
+            <div class="quick-action" onclick="exportASS()">
+                <div class="quick-action-icon">🎬</div>
+                <div class="quick-action-content">
+                    <div class="quick-action-title">Export ASS/SSA</div>
+                    <div class="quick-action-desc">Advanced styling support</div>
+                </div>
+            </div>
+            
+            <div class="quick-action" onclick="exportJSON()">
+                <div class="quick-action-icon">📊</div>
+                <div class="quick-action-content">
+                    <div class="quick-action-title">Export JSON</div>
+                    <div class="quick-action-desc">Full transcription data</div>
+                </div>
+            </div>
+            
+            <div class="quick-action" onclick="copyToClipboard()">
+                <div class="quick-action-icon">📋</div>
+                <div class="quick-action-content">
+                    <div class="quick-action-title">Copy Full Text</div>
+                    <div class="quick-action-desc">Plain transcription to clipboard</div>
+                </div>
+            </div>
+
+            <div class="quick-action" onclick="openTranscriptionEditor()">
+                <div class="quick-action-icon">✏️</div>
+                <div class="quick-action-content">
+                    <div class="quick-action-title">Edit Transcription</div>
+                    <div class="quick-action-desc">Manual editing & corrections</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Tools -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">🔧</div>
+                    Advanced Tools
+                </div>
+                <span class="section-badge">PRO</span>
+            </div>
+
+            <div class="collapsible-header" onclick="toggleCollapsible('translationSection')">
+                <span>🌍 Translation & Localization</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content" id="translationSection">
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Translate To</label>
+                <select id="translateToSelect">
+                    <option value="">Select Language...</option>
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="it">Italian</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="ar">Arabic</option>
+                    <option value="zh">Chinese</option>
+                    <option value="ja">Japanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="ru">Russian</option>
+                    <option value="hi">Hindi</option>
+                </select>
+                <button class="button button-info" onclick="translateTranscription()" style="margin-top: 10px;">
+                    <span>🌐 Translate Captions</span>
+                </button>
+            </div>
+
+            <div class="collapsible-header" onclick="toggleCollapsible('searchReplaceSection')" style="margin-top: 12px;">
+                <span>🔍 Search & Replace</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content" id="searchReplaceSection">
+                <input type="text" id="searchText" placeholder="Search for...">
+                <input type="text" id="replaceText" placeholder="Replace with...">
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="caseSensitiveCheck">
+                        <span>Case Sensitive</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="wholeWordCheck">
+                        <span>Whole Word Only</span>
+                    </label>
+                </div>
+                <div class="button-group" style="margin-top: 10px;">
+                    <button class="button button-info" onclick="findNext()">
+                        <span>Find Next</span>
+                    </button>
+                    <button class="button button-warning" onclick="replaceAll()">
+                        <span>Replace All</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="collapsible-header" onclick="toggleCollapsible('timecodeSection')" style="margin-top: 12px;">
+                <span>⏰ Timecode Adjustment</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content" id="timecodeSection">
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Time Offset (seconds)</label>
+                <input type="number" id="timeOffsetInput" value="0" step="0.1" placeholder="e.g., 2.5 or -1.5">
+                <div class="button-group" style="margin-top: 10px;">
+                    <button class="button button-info" onclick="adjustTimecode()">
+                        <span>⏱️ Apply Offset</span>
+                    </button>
+                    <button class="button button-outline" onclick="resetTimecode()">
+                        <span>🔄 Reset</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="collapsible-header" onclick="toggleCollapsible('qualitySection')" style="margin-top: 12px;">
+                <span>📊 Quality Analysis</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content" id="qualitySection">
+                <div id="qualityReport" style="font-size: 12px; color: var(--text-secondary);">
+                    Run transcription to view quality analysis...
+                </div>
+                <button class="button button-info" onclick="analyzeQuality()" style="margin-top: 10px;">
+                    <span>🔍 Analyze Quality</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Presets & Settings Management -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">💾</div>
+                    Presets & Settings
+                </div>
+            </div>
+
+            <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Saved Presets</label>
+            <select id="presetSelect">
+                <option value="">Select a preset...</option>
+                <option value="youtube">📺 YouTube Standard</option>
+                <option value="instagram">📱 Instagram Reels</option>
+                <option value="tiktok">🎵 TikTok</option>
+                <option value="podcast">🎧 Podcast</option>
+                <option value="interview">🎤 Interview</option>
+                <option value="documentary">🎬 Documentary</option>
+                <option value="corporate">💼 Corporate Video</option>
+            </select>
+
+            <div class="button-group" style="margin-top: 12px;">
+                <button class="button button-info" onclick="loadPreset()">
+                    <span>📥 Load Preset</span>
+                </button>
+                <button class="button button-secondary" onclick="savePreset()">
+                    <span>💾 Save Current as Preset</span>
+                </button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="button-group">
+                <button class="button button-outline" onclick="resetSettings()">
+                    <span>🔄 Reset All Settings</span>
+                </button>
+                <button class="button button-outline" onclick="exportSettings()">
+                    <span>📤 Export Settings</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">📊</div>
+                    Activity Log
+                </div>
+                <button class="button button-outline icon-button" onclick="clearLog()" title="Clear Log">
+                    <span>🗑️</span>
+                </button>
+            </div>
+            <div class="log" id="logContainer">
+                <div class="log-entry info">🚀 REDitors Voice-to-Text PRO v3.0 ULTIMATE initialized</div>
+                <div class="log-entry success">✅ All systems ready</div>
+                <div class="log-entry info">💡 Select a clip to begin transcription</div>
+            </div>
+            
+            <div class="checkbox-group" style="margin-top: 12px;">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="autoScrollLogCheck" checked>
+                    <span>Auto-scroll log</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="verboseLoggingCheck">
+                    <span>Verbose logging</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- API Key Configuration (Collapsible) -->
+        <div class="panel-section">
+            <div class="collapsible-header" onclick="toggleCollapsible('apiKeySection')">
+                <span>🔑 API Configuration</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content" id="apiKeySection">
+                <div class="alert alert-warning">
+                    <span>⚠️</span>
+                    <span>Keep your API key secure. Never share it publicly.</span>
+                </div>
+                
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block;">OpenAI API Key</label>
+                <input type="password" id="apiKeyInput" placeholder="sk-...">
+                
+                <div class="button-group" style="margin-top: 10px;">
+                    <button class="button button-secondary" onclick="saveAPIKey()">
+                        <span>💾 Save API Key</span>
+                    </button>
+                    <button class="button button-outline" onclick="testAPIKey()">
+                        <span>🧪 Test Connection</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About & Help -->
+        <div class="panel-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon">ℹ️</div>
+                    About & Help
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">REDitors Voice-to-Text PRO v3.0 ULTIMATE</div>
+                <div class="card-body">
+                    The most advanced AI-powered speech-to-text solution for Adobe Premiere Pro. Features include multi-language support, speaker diarization, AI enhancement, batch processing, translation, and professional caption styling.
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="button button-outline" onclick="openDocumentation()">
+                    <span>📖 Documentation</span>
+                </button>
+                <button class="button button-outline" onclick="reportIssue()">
+                    <span>🐛 Report Issue</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transcription Editor Modal -->
+    <div class="modal" id="editorModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <div class="modal-title">✏️ Transcription Editor</div>
+                <button class="modal-close" onclick="closeEditor()">✕</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="editorTextarea" style="width: 100%; min-height: 300px; font-family: monospace; resize: vertical;"></textarea>
+                
+                <div style="margin-top: 12px; display: flex; gap: 10px; align-items: center;">
+                    <span style="font-size: 11px; color: var(--text-secondary);">
+                        Words: <span id="editorWordCount">0</span> | 
+                        Characters: <span id="editorCharCount">0</span>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button button-outline" onclick="closeEditor()">Cancel</button>
+                <button class="button button-secondary" onclick="saveEdits()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Preset Modal -->
+    <div class="modal" id="savePresetModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">💾 Save Preset</div>
+                <button class="modal-close" onclick="closeSavePresetModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Preset Name</label>
+                <input type="text" id="presetNameInput" placeholder="My Custom Preset">
+                
+                <label style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; display: block; margin-top: 12px;">Description (optional)</label>
+                <textarea id="presetDescInput" placeholder="Description of this preset..." style="min-height: 80px;"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="button button-outline" onclick="closeSavePresetModal()">Cancel</button>
+                <button class="button button-secondary" onclick="confirmSavePreset()">Save Preset</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/libs/CSInterface.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

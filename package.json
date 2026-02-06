@@ -1,0 +1,273 @@
+{
+  "name": "reditors-voice-to-text-pro",
+  "version": "2.0.1",
+  "description": "Professional AI-Powered Speech-to-Text Transcription & Captioning Plugin for Adobe Premiere Pro",
+  "author": "REDitors",
+  "license": "Commercial",
+  
+  "changelog": {
+    "2.0.0": {
+      "date": "2024-02-06",
+      "changes": [
+        "MAJOR: Complete UI redesign with modern gradient design",
+        "NEW: Multi-model support (Whisper v1, Medium, Large)",
+        "NEW: Speaker diarization for identifying different speakers",
+        "NEW: Auto language detection",
+        "NEW: Smart caption splitting (42 char limit)",
+        "NEW: Real-time statistics (words, segments, duration)",
+        "NEW: Confidence filtering for better accuracy",
+        "NEW: Smart punctuation enhancement",
+        "NEW: Profanity filter option",
+        "NEW: WebVTT export format",
+        "NEW: Quick copy to clipboard",
+        "NEW: Tabbed interface (Basic/Advanced settings)",
+        "NEW: Processing time tracking",
+        "NEW: Color-coded activity log",
+        "NEW: Enhanced progress tracking with labels",
+        "IMPROVED: Better error handling and messages",
+        "IMPROVED: File validation and size checking",
+        "IMPROVED: Marker creation with colors",
+        "IMPROVED: SRT export with UTF-8 BOM",
+        "FIXED: All caption creation bugs from v1.0",
+        "ENHANCED: Overall performance and stability"
+      ]
+    },
+    "1.0.1": "FIXED: Caption creation error (segment.text.trim). Improved error handling and debugging.",
+    "1.0.0": "Initial release"
+  },
+  
+  "features": {
+    "transcription": [
+      "AI-powered speech recognition (OpenAI Whisper)",
+      "13+ language support",
+      "Multiple AI models (v1, Medium, Large)",
+      "Auto language detection",
+      "Speaker diarization",
+      "Smart punctuation",
+      "Confidence filtering",
+      "Profanity filter"
+    ],
+    "captions": [
+      "Automatic sequence marker creation",
+      "Smart caption splitting (42 char limit)",
+      "Auto-sync to clip timecode",
+      "Color-coded markers",
+      "Speaker labels",
+      "Full text in marker comments"
+    ],
+    "export": [
+      "SRT subtitle export (UTF-8 BOM)",
+      "WebVTT export",
+      "Clipboard copy",
+      "Automatic file naming",
+      "Desktop quick save"
+    ],
+    "interface": [
+      "Modern gradient UI design",
+      "Tabbed settings organization",
+      "Real-time progress tracking",
+      "Statistics dashboard",
+      "Color-coded activity log",
+      "Quick action shortcuts",
+      "Responsive layout"
+    ],
+    "analysis": [
+      "Word count display",
+      "Segment count tracking",
+      "Duration calculation",
+      "Processing time measurement",
+      "File size information"
+    ]
+  },
+  
+  "compatibility": {
+    "premierePro": "2020 - 2024 (CC)",
+    "os": ["Windows 10+", "macOS 10.14+"],
+    "cep": "11.0+",
+    "minPremiere": "14.0",
+    "maxPremiere": "99.9"
+  },
+  
+  "supported_languages": [
+    {"code": "en", "name": "English", "flag": "🇬🇧"},
+    {"code": "es", "name": "Spanish", "flag": "🇪🇸"},
+    {"code": "fr", "name": "French", "flag": "🇫🇷"},
+    {"code": "de", "name": "German", "flag": "🇩🇪"},
+    {"code": "it", "name": "Italian", "flag": "🇮🇹"},
+    {"code": "pt", "name": "Portuguese", "flag": "🇵🇹"},
+    {"code": "ar", "name": "Arabic", "flag": "🇸🇦"},
+    {"code": "zh", "name": "Chinese", "flag": "🇨🇳"},
+    {"code": "ja", "name": "Japanese", "flag": "🇯🇵"},
+    {"code": "ko", "name": "Korean", "flag": "🇰🇷"},
+    {"code": "ru", "name": "Russian", "flag": "🇷🇺"},
+    {"code": "hi", "name": "Hindi", "flag": "🇮🇳"},
+    {"code": "tr", "name": "Turkish", "flag": "🇹🇷"}
+  ],
+  
+  "ai_models": [
+    {
+      "name": "Whisper v1",
+      "value": "whisper-1",
+      "description": "Fast and accurate - recommended for most use cases",
+      "speed": "Fast",
+      "accuracy": "High"
+    },
+    {
+      "name": "Whisper Large",
+      "value": "whisper-large",
+      "description": "Highest accuracy - best for professional work",
+      "speed": "Medium",
+      "accuracy": "Highest"
+    },
+    {
+      "name": "Whisper Medium",
+      "value": "whisper-medium",
+      "description": "Balanced performance",
+      "speed": "Medium",
+      "accuracy": "Very High"
+    }
+  ],
+  
+  "output_formats": [
+    {
+      "format": "Sequence Markers",
+      "extension": "n/a",
+      "description": "Native Premiere Pro timeline markers",
+      "use_case": "Quick reference, timeline navigation"
+    },
+    {
+      "format": "SRT",
+      "extension": ".srt",
+      "description": "SubRip subtitle format with UTF-8 encoding",
+      "use_case": "Universal subtitle format, YouTube, professional delivery"
+    },
+    {
+      "format": "WebVTT",
+      "extension": ".vtt",
+      "description": "Web Video Text Tracks format",
+      "use_case": "HTML5 video, modern web platforms"
+    },
+    {
+      "format": "Plain Text",
+      "extension": ".txt",
+      "description": "Full transcription text (via clipboard)",
+      "use_case": "Documentation, scripts, analysis"
+    }
+  ],
+  
+  "api": {
+    "default_provider": "OpenAI",
+    "endpoint": "https://api.openai.com/v1/audio/transcriptions",
+    "requires_key": true,
+    "supported_providers": [
+      "OpenAI Whisper (Recommended)",
+      "AssemblyAI",
+      "Deepgram",
+      "Google Cloud Speech-to-Text",
+      "Azure Speech Services",
+      "Custom Whisper-compatible APIs"
+    ],
+    "file_size_limit": "25MB (recommended)",
+    "timeout": "5 minutes"
+  },
+  
+  "files": {
+    "manifest": "CSXS/manifest.xml",
+    "interface": "index.html",
+    "mainScript": "js/main.js",
+    "hostScript": "jsx/hostscript.jsx",
+    "library": "js/libs/CSInterface.js",
+    "styles": "Embedded in index.html",
+    "icons": "icons/ (optional)"
+  },
+  
+  "documentation": [
+    "README.md - Comprehensive guide",
+    "QUICKSTART.md - Quick reference",
+    "BUGFIX.md - Bug history and solutions"
+  ],
+  
+  "installation": {
+    "windows": {
+      "installer": "install-windows.bat",
+      "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\CEP\\extensions\\REDitors-VoiceToText-PremierePro",
+      "requires_admin": true
+    },
+    "macos": {
+      "installer": "install-macos.sh",
+      "path": "/Library/Application Support/Adobe/CEP/extensions/REDitors-VoiceToText-PremierePro",
+      "requires_sudo": true
+    }
+  },
+  
+  "system_requirements": {
+    "software": {
+      "premiere_pro": "2020 or later",
+      "os_windows": "Windows 10 or later",
+      "os_macos": "macOS 10.14 or later",
+      "internet": "Required"
+    },
+    "hardware": {
+      "ram_min": "8GB",
+      "ram_recommended": "16GB",
+      "storage": "100MB for plugin",
+      "network": "Stable connection required"
+    }
+  },
+  
+  "performance": {
+    "transcription_speed": "~10-30 seconds per minute of audio",
+    "file_processing": "Depends on file size and network speed",
+    "resource_usage": "Low CPU/RAM, network dependent",
+    "cache": "No local caching (API-based)"
+  },
+  
+  "workflow_support": {
+    "use_cases": [
+      "YouTube videos",
+      "Social media content",
+      "Corporate training",
+      "Documentaries",
+      "Interviews",
+      "Podcasts",
+      "Educational content",
+      "Broadcast media",
+      "Accessibility compliance"
+    ]
+  },
+  
+  "comparison_v1_vs_v2": {
+    "v1": {
+      "ui": "Basic black & white",
+      "models": 1,
+      "languages": 10,
+      "features": "Basic transcription",
+      "exports": "SRT only",
+      "settings": "Basic only"
+    },
+    "v2": {
+      "ui": "Modern gradient design",
+      "models": 3,
+      "languages": "13+",
+      "features": "Advanced AI with speaker ID",
+      "exports": "SRT, WebVTT, Clipboard",
+      "settings": "Basic + Advanced tabs"
+    },
+    "improvements": "15+ new features, better UX, enhanced accuracy"
+  },
+  
+  "support": {
+    "documentation": "Comprehensive README.md",
+    "troubleshooting": "Built-in activity log",
+    "community": "Share workflows and tips",
+    "updates": "Regular feature additions"
+  },
+  
+  "metadata": {
+    "category": "Video Editing Tools",
+    "subcategory": "Transcription & Captioning",
+    "target_audience": "Professional video editors",
+    "skill_level": "All levels",
+    "pricing_model": "Commercial (requires API subscription)"
+  }
+}
